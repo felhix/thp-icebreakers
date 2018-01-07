@@ -1,0 +1,41 @@
+<h1>Bienvenue à The Hacking Project</h1>
+<p>Ce site regroupe quelques jeux qui te permettront découvrir ton équipe ❤️</p>
+
+<% if group_signed_in? %>
+	<h2>Faisons les présentations</h2>
+	<p>On va commencer par découvrir les membres de ton équipe. Remplis ce formulaire pour chaque membre.</p>
+	<%= form_tag create_member_path do %>
+	  <%= label_tag(:nickname, "Pseudo :") %>
+	  <%= text_field_tag(:nickname) %>
+	  <%= submit_tag("Soumettre") %>
+	<% end %>
+
+	<% if @members.empty? %>
+	<p><i>Tu n'as pas encore ajouté de membre ;)</i></p>
+	<% else %>
+		<h3>Voici la liste des membres du groupe :</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Pseudo</th>
+          <th>X</th>
+        </tr>
+      </thead>
+      <tbody>
+				<% @members.each do |member| %>
+					<tr>
+						<td><%= member.nickname %></td> 
+						<td><%= link_to "Suppr", destroy_member_path(member), method: :delete,
+			                                  data: { confirm: "Es-tu sûr ? Tu pourras les recréer après" } %></td>
+					</tr>
+				<% end %>
+      </tbody>
+    </table>
+	<% end %>
+<% else %>
+
+	<p>Pour le moment, le groupe n'est pas inscrit sur la plate-forme.</p>
+	<p>Tu peux inscrire le groupe <%= link_to("par ici", new_group_registration_path) %>. Un seul ordinateur par groupe 😉</p>
+
+<% end %>
