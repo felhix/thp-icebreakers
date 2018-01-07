@@ -7,7 +7,8 @@ class MembersController < ApplicationController
   end
 
   def index
-    @members = current_group.members
+    @group = current_group
+    @members = current_group.members unless @group == nil
   end
 
   def destroy
