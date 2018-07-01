@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get 'photos', to: 'statics#photos'
   get 'truth', to: 'statics#truth'
   get 'truth/random', to: 'statics#random_truth', as: 'new_random_truth'
+  get '/draw', to: 'statics#draw'
 
 end

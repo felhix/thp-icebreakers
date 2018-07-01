@@ -35,4 +35,7 @@ class StaticsController < ApplicationController
     @members = current_group.members
   end
 
+  def draw
+  end
+
 end
